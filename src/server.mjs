@@ -1,9 +1,19 @@
-// Реалізація EXPRESS сервера відповідно до завдання, описаного у файлі ASSIGNMENT.md
+import express from 'express';
 
-// Імпортуємо необхідні модулі
+const app = express();
+const PORT = 3000;
 
-// Створюємо EXPRESS сервер
+// Middleware для обробки JSON
+app.use(express.json());
 
-// Експорт для тестів
-let server, app;
-export { server, app };
+// Кореневий маршрут
+app.get('/', (req, res) => {
+  res.status(200).send('Get root route');
+});
+
+// Запуск сервера
+const server = app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
+
+export { app, server };
