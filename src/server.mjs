@@ -1,5 +1,6 @@
 import express from 'express';
 import usersRouter from './routes/users.mjs';
+import articlesRouter from './routes/articles.mjs';
 
 const app = express();
 const PORT = 3000;
@@ -12,8 +13,9 @@ app.get('/', (req, res) => {
   res.status(200).send('Get root route');
 });
 
-// Маршрути користувачів
+// API маршрути
 app.use('/users', usersRouter);
+app.use('/articles', articlesRouter);
 
 // Обробка неіснуючих маршрутів
 app.use((req, res) => {
