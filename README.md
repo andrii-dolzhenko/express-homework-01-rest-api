@@ -1,35 +1,104 @@
-# ДЗ #1 Express.js
+# Express REST API
 
-## 1. Завантажуємо репозиторій та розгортаємо проект
+A REST API for managing users and articles, built with Node.js and Express 5.
 
-`npm install`
+## Features
 
-або
+- CRUD operations for users and articles
+- In-memory storage using JavaScript `Map`
+- Request validation for `name` and `title`
+- JSON responses and appropriate HTTP status codes
+- Centralized handling of 404 and 500 errors
+- Automated tests with Vitest and Supertest
 
-`yarn`
+## Tech Stack
 
-_yarn повинен бути встановлений глобально, це можна зробити командой:_
+- Node.js (ES Modules)
+- Express 5
+- Vitest and Supertest
 
-`npm i -g yarn`
+## Getting Started
 
-## 2. Виконуємо задачі для .js файлів
+Install dependencies:
 
-## 3. Запускаємо тести
+```bash
+npm install
+```
 
-`yarn test`
+Start the server:
 
-або
+```bash
+npm start
+```
 
-`npm test`
+The API is available at `http://localhost:3000`.
 
-## 4. Перевіряємо результат
+For development with automatic restarts:
 
-Якщо **тести не пройдені**
+```bash
+npm run dev
+```
 
-- Аналізуйте результати тестів, ідентифікуйте та виправляйте помилки у коді.
+## API Endpoints
 
-Якщо **тести пройдені**:
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| GET | `/` | Health-check-style root response |
+| GET | `/users` | List users |
+| GET | `/users/:userId` | Get a user by ID |
+| POST | `/users` | Create a user |
+| PUT | `/users/:userId` | Update a user |
+| DELETE | `/users/:userId` | Delete a user |
+| GET | `/articles` | List articles |
+| GET | `/articles/:articleId` | Get an article by ID |
+| POST | `/articles` | Create an article |
+| PUT | `/articles/:articleId` | Update an article |
+| DELETE | `/articles/:articleId` | Delete an article |
 
-1. Зробіть скріншот пройдених тестів та відправте його як доказ виконання завдання.
-2. Завантажте ваш проект на GitHub.
-3. Надайте пряме посилання на файл (або файли) JavaScript (або TypeScript) у вашому проекті.
+POST and PUT requests expect JSON with a non-empty `name` for users or `title` for articles.
+
+Example:
+
+```bash
+curl -X POST http://localhost:3000/users \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"Alex"}'
+```
+
+## HTTP Status Codes
+
+- `200` — Successful retrieval or update
+- `201` — Resource created
+- `204` — Resource deleted (empty response body)
+- `400` — Invalid request data
+- `404` — Resource or route not found
+- `500` — Unexpected server error
+
+Data is stored in memory and resets when the server restarts. No external database is required.
+
+## Testing
+
+```bash
+npm test
+```
+
+The included test suite covers the root route, CRUD operations, validation, and error handling (23 tests).
+
+## Project Structure
+
+```text
+src/
+├── __test__/task1.test.js
+├── data/
+│   ├── articles.mjs
+│   └── users.mjs
+├── routes/
+│   ├── articles.mjs
+│   └── users.mjs
+├── ASSIGNMENT.md
+└── server.mjs
+```
+
+---
+
+Copyright © 2026 Andrii Dolzhenko.
