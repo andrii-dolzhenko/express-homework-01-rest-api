@@ -24,8 +24,12 @@ app.use((req, res) => {
 
 // Глобальна обробка помилок
 app.use((err, req, res, next) => {
+  if (err.status === 400 && err.type === 'entity.parse.failed') {
+    return res.status(400).send('Bad Request');
+  }
+
   console.error(err);
-  res.status(500).send('Internal Server Error');
+  return res.status(500).send('Internal Server Error');
 });
 
 const server = app.listen(PORT, () => {
