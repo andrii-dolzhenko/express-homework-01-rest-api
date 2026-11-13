@@ -1,4 +1,4 @@
-# Express REST API
+# Express.js  · Homework 01 · REST API
 
 A REST API for managing users and articles, built with Node.js and Express 5.
 
@@ -89,6 +89,9 @@ The included test suite covers the root route, CRUD operations, validation, and 
 ```text
 src/
 ├── __test__/task1.test.js
+├── controllers/
+│   ├── articles.mjs
+│   └── users.mjs
 ├── data/
 │   ├── articles.mjs
 │   └── users.mjs
