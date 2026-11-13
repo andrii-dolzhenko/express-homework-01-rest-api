@@ -221,7 +221,13 @@ $('requestForm').addEventListener('submit', (event) => {
   runRequest(request);
 });
 $('refreshCollection').addEventListener('click', refreshCollection);
-$('resetDemo').addEventListener('click', () => { resetMockDatabase(); refreshCollection(); $('responseBody').textContent = 'Demo data reset. Send a request to begin.'; $('statusBadge').textContent = 'READY'; $('statusBadge').className = 'response-status'; });
+$('resetDemo').addEventListener('click', async () => {
+  resetMockDatabase();
+  clearResponse();
+  $('responseBody').textContent = 'Demo data reset. Send a request to begin.';
+  $('responseNote').textContent = 'Original demo records restored. No request has been sent.';
+  await refreshCollection();
+});
 $('pingRoot').addEventListener('click', () => runRequest({ method: 'GET', path: '/' }));
 $('copyResponse').addEventListener('click', (event) => copyText(state.lastResponse, event.currentTarget));
 $('copyCurl').addEventListener('click', (event) => {
