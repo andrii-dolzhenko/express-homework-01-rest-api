@@ -10,6 +10,7 @@ A REST API for managing users and articles, built with Node.js and Express 5.
 - JSON responses and appropriate HTTP status codes
 - Centralized handling of 404 and 500 errors
 - Automated tests with Vitest and Supertest
+- Interactive browser playground (local live API + GitHub Pages simulation)
 
 ## Tech Stack
 
@@ -38,6 +39,12 @@ For development with automatic restarts:
 ```bash
 npm run dev
 ```
+
+## Interactive Demo
+
+- **Live local API:** run `npm start` and open `http://localhost:3000/demo/`. All actions call the real Express routes.
+- **[GitHub Pages preview](https://andrii-dolzhenko.github.io/express-homework-01-rest-api/):** the static playground simulates API responses in browser memory. GitHub Pages does **not** host the Node.js backend.
+- The preview resets when you reload the page; the real API also uses in-memory storage that resets on server restart.
 
 ## API Endpoints
 
@@ -84,9 +91,19 @@ npm test
 
 The included test suite covers the root route, CRUD operations, validation, and error handling (23 tests).
 
+## Automation
+
+- GitHub Actions runs the 23 automated tests on pushes and pull requests to `main`.
+- A separate Pages workflow publishes the `demo/` directory when configured under **Settings → Pages → Source: GitHub Actions**.
+
 ## Project Structure
 
 ```text
+demo/
+├── index.html
+├── styles.css
+└── app.js
+
 src/
 ├── __test__/task1.test.js
 ├── controllers/

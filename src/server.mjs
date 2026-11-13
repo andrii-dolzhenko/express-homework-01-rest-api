@@ -1,4 +1,5 @@
 import express from 'express';
+import { resolve } from 'node:path';
 import usersRouter from './routes/users.mjs';
 import articlesRouter from './routes/articles.mjs';
 
@@ -16,6 +17,9 @@ app.get('/', (req, res) => {
 // API маршрути
 app.use('/users', usersRouter);
 app.use('/articles', articlesRouter);
+
+// Interactive API playground (served locally at /demo/)
+app.use('/demo', express.static(resolve(process.cwd(), 'demo')));
 
 // Обробка неіснуючих маршрутів
 app.use((req, res) => {
